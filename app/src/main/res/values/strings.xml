@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Draw Art</string>
+    <string name="app_admob_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="facebook_app_id" translatable="false">123456789012345</string>
+    <string name="facebook_client_token" translatable="false">fake_client_token_123456</string>
+
+</resources>

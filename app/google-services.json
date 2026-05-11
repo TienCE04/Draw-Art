@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "182362414292",
+    "project_id": "draw-art-4e4d1",
+    "storage_bucket": "draw-art-4e4d1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182362414292:android:7d272eaab047c457192f41",
+        "android_client_info": {
+          "package_name": "com.leansoft.draw.drawart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZQCVpVXfStsRjluYb3CP53QO98Uh-kKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
