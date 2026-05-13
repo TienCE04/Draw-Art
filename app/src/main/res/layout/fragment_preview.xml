@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.leansoft.ads.ui.custom.SafeAreaView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/layoutHeader"
+        layout="@layout/layout_header_2" />
+
+    <ImageView
+        android:id="@+id/imgPreview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+
+    <TextView
+        android:id="@+id/tvFrame"
+        style="@style/BodyNormalM1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/msg_frames"
+        android:textColor="@color/neutral_500"
+        app:layout_constraintStart_toStartOf="@+id/imgPreview"
+        app:layout_constraintTop_toBottomOf="@+id/imgPreview" />
+
+    <TextView
+        android:id="@+id/tvNumberFrame"
+        style="@style/BodyNormalM1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textColor="@color/neutral_500"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFrame"
+        app:layout_constraintStart_toEndOf="@+id/tvFrame"
+        app:layout_constraintTop_toTopOf="@+id/tvFrame"
+        tools:text="12" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFrame"
+        tools:listitem="@layout/item_frame_preview" />
+
+    <TextView
+        android:id="@+id/tvMode"
+        style="@style/BodyNormalM1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/msg_mode"
+        android:textColor="@color/neutral_500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rcvFrame" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_card_mode_selector"
+        android:elevation="0.5dp"
+        android:orientation="vertical"
+        app:layout_constraintDimensionRatio="176:116"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMode"
+        app:layout_constraintWidth_percent="0.43">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside" />
+
+        <TextView
+            style="@style/LabelMediumS1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="@string/msg_use_template" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_card_mode_selector"
+        android:elevation="0.5dp"
+        android:orientation="vertical"
+        app:layout_constraintDimensionRatio="176:116"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/tvMode"
+        app:layout_constraintWidth_percent="0.42">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside" />
+
+        <TextView
+            style="@style/LabelMediumS1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="@string/msg_draw_according" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/AppButton"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/msg_continue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</com.leansoft.ads.ui.custom.SafeAreaView>

@@ -142,6 +142,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv2" />
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvBg"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
@@ -153,19 +154,67 @@
         app:layout_constraintTop_toBottomOf="@+id/tvBg"
         app:strokeColor="@color/neutral_200"
         app:strokeWidth="1.5dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgResult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_neutral50percen"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cvBg"
+        app:layout_constraintEnd_toEndOf="@id/cvBg"
+        app:layout_constraintStart_toStartOf="@+id/cvBg">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:id="@+id/imgBackground"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_background" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgPaint"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="8dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_paintboard" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgImageEdit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="8dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_image_edit" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgCamera"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_camera" />
     </LinearLayout>
+
+    <TextView
+        style="@style/AppButton"
+        android:layout_width="0dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/msg_create_now"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </com.leansoft.draw.drawart.widget.SafeAreaView>
