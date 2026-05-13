@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomNavTextActive">
+        <item name="fontFamily">@font/inter_semi_bold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="BottomNavTextInactive">
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="TextBase">
+        <item name="android:textColor">@color/neutral_950</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="BodyNormalM1" parent="TextBase">
+        <item name="fontFamily">@font/inter_semi_bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+    <style name="BodyLargeM1" parent="TextBase">
+        <item name="fontFamily">@font/inter_semi_bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="BodySmallR1" parent="TextBase">
+        <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="BodySmallM1" parent="TextBase">
+        <item name="fontFamily">@font/inter_semi_bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="LabelMediumM1">
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
+
+</resources>

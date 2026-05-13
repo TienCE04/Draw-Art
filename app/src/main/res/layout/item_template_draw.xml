@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="#403333FF"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintDimensionRatio="176:244"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    dung glide bo goc-->
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivBgThumb"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:background="@color/neutral_50"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cvBg"
+        app:layout_constraintEnd_toEndOf="@+id/cvBg"
+        app:layout_constraintStart_toStartOf="@+id/cvBg"
+        app:layout_constraintTop_toTopOf="@+id/cvBg" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgThumb"
+        android:layout_width="0dp"
+        android:elevation="4dp"
+        tools:src="@drawable/img_thumb_temp"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        app:layout_constraintDimensionRatio="152:152"
+        app:layout_constraintEnd_toEndOf="@+id/ivBgThumb"
+        app:layout_constraintStart_toStartOf="@+id/ivBgThumb"
+        app:layout_constraintTop_toTopOf="@+id/ivBgThumb" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="12dp"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/ivBgThumb"
+        app:layout_constraintStart_toStartOf="@+id/ivBgThumb">
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/BodyNormalM1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Hello" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/BodyNormalM1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/msg_level" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/BodySmallR1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/neutral_500"
+            tools:text="10 frames" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
