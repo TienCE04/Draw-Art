@@ -27,4 +27,5 @@
     <string name="msg_draw_according">Draw According\nTemplate</string>
     <string name="msg_continue">Continue</string>
     <string name="msg_make_video">Make Video</string>
+    <string name="msg_movie">Movie</string>
 </resources>

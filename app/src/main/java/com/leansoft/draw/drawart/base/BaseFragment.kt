@@ -40,8 +40,6 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mViewModel = ViewModelProvider(this)[getClassVM()]
-        mViewModel.navigationViewModel = navVM
-        mViewModel.mainViewModel = mainVM
         initView()
     }
 

@@ -73,11 +73,13 @@
                 android:text="@string/msg_level" />
 
             <TextView
+                android:id="@+id/tvLevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tvNumberFrame"
             style="@style/BodySmallR1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -6,6 +6,4 @@ import com.leansoft.draw.drawart.presentation.viewmodel.NavigationViewModel
 
 open class BaseViewModel: ViewModel() {
 
-    lateinit var mainViewModel: MainViewModel
-    lateinit var navigationViewModel: NavigationViewModel
 }

@@ -1,7 +1,7 @@
 package com.leansoft.draw.drawart.data.source.remote.dto
 
 data class AnimationDto(
-    val id: String,
+    val idAnim: String,
     val name: String,
     val thumbnail: String,
     val urlGif: String,

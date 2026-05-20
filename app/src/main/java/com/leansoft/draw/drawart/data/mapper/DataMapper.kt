@@ -15,7 +15,7 @@ fun CategoriesDto.toDomain(): CategoryGroupModel {
 
 fun AnimationDto.toDomain(): AnimationModel {
     val list = this.listFrame ?: emptyList()
-    val id = this.id
+    val id = this.idAnim
     val name = this.name
     val thumbnail = this.thumbnail
     val urlGif = this.urlGif
