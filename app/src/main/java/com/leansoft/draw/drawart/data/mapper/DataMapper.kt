@@ -1,5 +1,6 @@
 package com.leansoft.draw.drawart.data.mapper
 
+import com.leansoft.draw.drawart.data.source.local.database.entity.FrameImageEntity
 import com.leansoft.draw.drawart.data.source.remote.dto.AnimationDto
 import com.leansoft.draw.drawart.data.source.remote.dto.CategoriesDto
 import com.leansoft.draw.drawart.data.source.remote.dto.FrameDto
@@ -35,6 +36,12 @@ fun FrameDto.toDomain(): FrameModel {
     val id = this.id
     val url = this.url
     return FrameModel(
-        id, url
+        id, url, ""
+    )
+}
+
+fun FrameImageEntity.toDomain(): FrameModel {
+    return FrameModel(
+        id, imagePath, thumbnailPath
     )
 }
