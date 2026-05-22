@@ -19,10 +19,12 @@ fun ImageView.loadImage(
     noCache: Boolean = false,
     centerCrop: Boolean = true,
     cornerRadiusDp: Float = 0f,
-    useShimmer: Boolean = false
+    useShimmer: Boolean = false,
+    alpha: Float = 1f
 ) {
     val shimmerDrawable = if (useShimmer) createShimmerPlaceholder() else null
     if (url == null) return
+    this.alpha = alpha
     Glide.with(context).load(url).apply(
         if (useShimmer) {
             RequestOptions().placeholder(shimmerDrawable)
@@ -55,6 +57,7 @@ fun ImageView.loadImage(
         }
     ).into(this)
 }
+
 fun createShimmerPlaceholder(): ShimmerDrawable {
     val shimmer = Shimmer.AlphaHighlightBuilder()
         .setDuration(1000)

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="48dp">
 
-    <com.mbridge.msdk.videocommon.view.RoundImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivLogo"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -20,15 +20,15 @@
         android:id="@+id/tvHeader"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:textColor="@color/primary_400"
-        android:textSize="24sp"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/mochiy_pop_one_regular"
         android:gravity="center"
+        android:text="@string/msg_title_home"
+        android:textColor="@color/primary_400"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/ivLogo"
         app:layout_constraintStart_toEndOf="@+id/ivLogo"
-        app:layout_constraintTop_toTopOf="@+id/ivLogo"
-        tools:text="Draw Animation" />
+        app:layout_constraintTop_toTopOf="@+id/ivLogo" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/icSetting"

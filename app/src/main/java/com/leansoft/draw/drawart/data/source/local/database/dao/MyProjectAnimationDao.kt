@@ -1,0 +1,28 @@
+package com.leansoft.draw.drawart.data.source.local.database.dao
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
+import com.leansoft.draw.drawart.data.source.local.database.entity.FrameImageEntity
+import com.leansoft.draw.drawart.data.source.local.database.entity.ProjectEntity
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface MyProjectAnimationDao {
+    @Insert
+    suspend fun insert(item: ProjectEntity)
+
+    @Delete
+    suspend fun delete(item: ProjectEntity)
+
+    @Update
+    suspend fun update(item: ProjectEntity)
+
+    @Query("SELECT * FROM my_project ORDER BY createdAt DESC")
+    fun getAll(): Flow<List<ProjectEntity>>
+
+    @Query("SELECT * FROM frame_images WHERE projectId = :idProject")
+    suspend fun getProjectById(idProject: Int): List<FrameImageEntity>
+}

@@ -1,6 +1,7 @@
 package com.leansoft.draw.drawart.presentation.ui.home
 
 import android.os.Bundle
+import com.leansoft.draw.drawart.R
 import com.leansoft.draw.drawart.base.BaseFragment
 import com.leansoft.draw.drawart.databinding.FragmentListCateBinding
 import com.leansoft.draw.drawart.presentation.viewmodel.NothingViewModel
@@ -15,7 +16,8 @@ class FragmentListCate : BaseFragment<FragmentListCateBinding, NothingViewModel>
     override fun initView() {
         nameCate = arguments?.getString(NAME_CATE) ?: "Christmas"
         adapter = FragmentListCateAdapter(requireContext()) { item ->
-
+            mainVM.setItemAnimSelected(item)
+            navVM.navigate(R.id.action_fragmentMain_to_fragmentPreview)
         }
         observe()
     }

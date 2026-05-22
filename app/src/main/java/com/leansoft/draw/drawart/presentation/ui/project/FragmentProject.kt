@@ -10,7 +10,6 @@ class FragmentProject: BaseFragment<FragmentProjectBinding, NothingViewModel>(){
     }
 
     override fun initView() {
-        TODO("Not yet implemented")
     }
 
     override fun initViewBinding(): FragmentProjectBinding {

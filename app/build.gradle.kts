@@ -106,7 +106,7 @@ dependencies {
     implementation("com.asksira.android:loopingviewpager:1.4.1")
 
     // lib ads
-    implementation("com.github.ngoxuanhungbk:ls-leansoft-publishing-sdk:1.0.35")
+//    implementation("com.github.ngoxuanhungbk:ls-leansoft-publishing-sdk:1.0.35")
 
     api("org.tensorflow:tensorflow-lite:2.17.0")
     api("com.google.mlkit:face-detection:16.1.7")
@@ -123,8 +123,6 @@ dependencies {
     // No additional plugins are necessary
     annotationProcessor("androidx.room:room-compiler:$room_version")
 
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:$room_version")
 
     implementation("androidx.lifecycle:lifecycle-process:2.8.3")
     implementation("com.google.android.play:app-update-ktx:2.1.0")
@@ -132,6 +130,8 @@ dependencies {
 
     implementation("jp.wasabeef:glide-transformations:4.3.0")
 
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
     implementation("id.zelory:compressor:3.0.1")
 
     val camerax_version = "1.5.1"
@@ -146,5 +146,8 @@ dependencies {
     implementation("androidx.media3:media3-exoplayer:$exoplayerVer")
     implementation("androidx.media3:media3-datasource:$exoplayerVer")
     implementation("androidx.media3:media3-ui:$exoplayerVer")
+
+    //draw
+    implementation("com.github.skydoves:colorpickerview:2.4.0")
 
 }

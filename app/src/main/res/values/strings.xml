@@ -28,4 +28,6 @@
     <string name="msg_continue">Continue</string>
     <string name="msg_make_video">Make Video</string>
     <string name="msg_movie">Movie</string>
+    <string name="msg_title_home">Draw Animation</string>
+    <string name="msg_colors">Colors</string>
 </resources>

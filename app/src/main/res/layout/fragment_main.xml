@@ -1,46 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.leansoft.draw.drawart.widget.SafeAreaView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <include
-        android:id="@+id/layoutHeader"
-        layout="@layout/layout_header" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vpHome"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:paddingBottom="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
-
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.leansoft.draw.drawart.widget.SafeAreaView
         android:layout_width="match_parent"
-        android:layout_height="1.5dp"
-        android:background="#1A3333FF"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavMain" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavMain"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/white"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="10dp"
-        app:itemActiveIndicatorStyle="@null"
-        app:itemIconTint="@color/item_tint_main_selector"
-        app:itemTextColor="@color/item_tint_main_selector"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="412:88"
+        android:layout_height="match_parent"
+        android:paddingTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/layoutHeader"
+            layout="@layout/layout_header" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpHome"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingBottom="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="#1A3333FF"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavMain" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/blur"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#8018191B"
+            android:elevation="10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/layoutAdd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </com.leansoft.draw.drawart.widget.SafeAreaView>
 
     <View
         android:id="@+id/guideLine"
@@ -71,19 +83,17 @@
             android:src="@drawable/ic_add_home" />
     </FrameLayout>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/blur"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#8018191B"
-        android:elevation="10dp"
-        android:visibility="gone"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavMain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="20dp"
+        app:itemActiveIndicatorStyle="@null"
+        app:itemIconTint="@color/item_tint_main_selector"
+        app:itemTextColor="@color/item_tint_main_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
-</com.leansoft.draw.drawart.widget.SafeAreaView>
+        app:menu="@menu/bottom_menu" />
+</androidx.constraintlayout.widget.ConstraintLayout>

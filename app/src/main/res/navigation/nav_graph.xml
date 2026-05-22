@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentMain">
 
+    <fragment
+        android:id="@+id/fragmentMain"
+        android:name="com.leansoft.draw.drawart.presentation.ui.main.FragmentMain"
+        android:label="Fragment Main"
+        tools:layout="@layout/fragment_main">
 
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentPreview"
+            app:destination="@id/fragmentPreview" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPreview"
+        android:name="com.leansoft.draw.drawart.presentation.ui.preview.FragmentPreview"
+        android:label="Fragment Preview"
+        tools:layout="@layout/fragment_preview">
+
+    </fragment>
 </navigation>
