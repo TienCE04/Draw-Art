@@ -18,7 +18,6 @@ import androidx.room.PrimaryKey
 data class FrameImageEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val projectId: Int,
-    val thumbnailPath: String,
     val imagePath: String,
     val createdAt: Long
 )

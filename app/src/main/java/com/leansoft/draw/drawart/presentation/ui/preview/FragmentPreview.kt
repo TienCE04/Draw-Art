@@ -10,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FragmentPreview : BaseFragment<FragmentPreviewBinding, NothingViewModel>() {
 
-    private val adapter by lazy { FragmentFramePreviewAdapter() }
+    private val adapter by lazy { FramePreviewAdapter() }
     override fun getClassVM(): Class<NothingViewModel> {
         return NothingViewModel::class.java
     }

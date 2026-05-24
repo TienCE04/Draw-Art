@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.leansoft.draw.drawart.databinding.ItemTabCateBinding
 import com.leansoft.draw.drawart.domain.model.CategoryGroupModel
 
-class FragmentTabCateAdapter :
-    ListAdapter<CategoryGroupModel, FragmentTabCateAdapter.ViewHolder>(DiffUtilTabCate()) {
+class TabCateAdapter :
+    ListAdapter<CategoryGroupModel, TabCateAdapter.ViewHolder>(DiffUtilTabCate()) {
     inner class ViewHolder(private val binding: ItemTabCateBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CategoryGroupModel) {

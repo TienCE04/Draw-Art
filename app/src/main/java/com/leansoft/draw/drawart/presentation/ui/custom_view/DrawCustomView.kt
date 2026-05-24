@@ -24,7 +24,6 @@ class DrawCustomView @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
     private lateinit var baseBitmap: Bitmap
 
-
     private val actions = mutableListOf<DrawAction>()
     private val redoStack = mutableListOf<DrawAction>()
 
@@ -73,6 +72,7 @@ class DrawCustomView @JvmOverloads constructor(
 
         actions.clear()
         redoStack.clear()
+        invalidate()
     }
     //draw
 
@@ -85,8 +85,12 @@ class DrawCustomView @JvmOverloads constructor(
 
             drawMatrix.reset()
 
-            drawMatrix.postScale(scaleFactor, scaleFactor, width / 2f, height / 2f)
+            val translateX = (width - baseBitmap.width) / 2f
+            val translateY = (height - baseBitmap.height) / 2f
 
+            drawMatrix.postTranslate(translateX, translateY)
+
+            drawMatrix.postScale(scaleFactor, scaleFactor, width / 2f, height / 2f)
             drawMatrix.postRotate(rotationDegrees, width / 2f, height / 2f)
 
             concat(drawMatrix)
@@ -100,6 +104,7 @@ class DrawCustomView @JvmOverloads constructor(
 
         }
     }
+
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -370,6 +375,22 @@ class DrawCustomView @JvmOverloads constructor(
                 }
             }
         }
+    }
+
+    //chi lay phan ve
+    fun exportBitmapWithoutBase(): Bitmap {
+        return cacheBitmap.copy(Bitmap.Config.ARGB_8888, false)
+    }
+
+    //lấy full cả ảnh base
+    fun exportBitmap(): Bitmap {
+        val result = createBitmap(baseBitmap.width, baseBitmap.height)
+        val canvas = Canvas(result)
+
+        canvas.drawBitmap(baseBitmap, 0f, 0f, null)
+        canvas.drawBitmap(cacheBitmap, 0f, 0f, null)
+
+        return result
     }
 }
 

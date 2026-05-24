@@ -4,6 +4,7 @@ import com.leansoft.draw.drawart.R
 import com.leansoft.draw.drawart.base.BaseFragment
 import com.leansoft.draw.drawart.databinding.FragmentMainBinding
 import com.leansoft.draw.drawart.presentation.viewmodel.NothingViewModel
+import com.leansoft.draw.drawart.utils.ext.safeOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,7 +49,10 @@ class FragmentMain : BaseFragment<FragmentMainBinding, NothingViewModel>() {
     }
 
     private fun register() {
-
+        with(binding) {
+            layoutAdd.safeOnClickListener {
+            }
+        }
     }
 
     private fun observer() {

@@ -14,12 +14,22 @@
         <action
             android:id="@+id/action_fragmentMain_to_fragmentPreview"
             app:destination="@id/fragmentPreview" />
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentDrawFrame"
+            app:destination="@id/fragmentDrawFrame" />
     </fragment>
     <fragment
         android:id="@+id/fragmentPreview"
         android:name="com.leansoft.draw.drawart.presentation.ui.preview.FragmentPreview"
         android:label="Fragment Preview"
         tools:layout="@layout/fragment_preview">
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDrawFrame"
+        android:name="com.leansoft.draw.drawart.presentation.ui.draw.FragmentDrawFrame"
+        android:label="Fragment Draw Frame"
+        tools:layout="@layout/fragment_draw_frame">
 
     </fragment>
 </navigation>

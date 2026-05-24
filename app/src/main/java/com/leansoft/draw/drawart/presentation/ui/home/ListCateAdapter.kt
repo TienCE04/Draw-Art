@@ -10,21 +10,21 @@ import com.leansoft.draw.drawart.databinding.ItemTemplateDrawBinding
 import com.leansoft.draw.drawart.domain.model.AnimationModel
 import com.leansoft.draw.drawart.utils.ext.loadImage
 
-class FragmentListCateAdapter(
+class ListCateAdapter(
     private val context: Context,
     private val callback: (AnimationModel) -> Unit
 ) :
-    ListAdapter<AnimationModel, FragmentListCateAdapter.ViewHolder>(DiffUtilAnim()) {
+    ListAdapter<AnimationModel, ListCateAdapter.ViewHolder>(DiffUtilAnim()) {
     override fun onCreateViewHolder(
         p0: ViewGroup,
         p1: Int
-    ): FragmentListCateAdapter.ViewHolder {
+    ): ListCateAdapter.ViewHolder {
         val view =
             ItemTemplateDrawBinding.inflate(android.view.LayoutInflater.from(p0.context), p0, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FragmentListCateAdapter.ViewHolder, pos: Int) {
+    override fun onBindViewHolder(holder: ListCateAdapter.ViewHolder, pos: Int) {
         val item = getItem(pos)
         holder.bind(item)
     }

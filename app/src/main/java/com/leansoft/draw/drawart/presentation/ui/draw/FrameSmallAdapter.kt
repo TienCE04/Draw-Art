@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.leansoft.draw.drawart.databinding.ItemFrameEdittedBinding
 import com.leansoft.draw.drawart.domain.model.FrameModel
-import com.leansoft.draw.drawart.presentation.ui.preview.FragmentFramePreviewAdapter
+import com.leansoft.draw.drawart.presentation.ui.preview.FramePreviewAdapter
 import com.leansoft.draw.drawart.utils.ext.loadImage
 
-class FragmentFrameSmallAdapter(private val onItemClick: ((FrameModel) -> Unit)? = null) :
-    ListAdapter<FrameModel, FragmentFrameSmallAdapter.ViewHolder>(
-        FragmentFramePreviewAdapter.DiffUtilFrame()
+class FrameSmallAdapter(private val onItemClick: ((FrameModel) -> Unit)? = null) :
+    ListAdapter<FrameModel, FrameSmallAdapter.ViewHolder>(
+        FramePreviewAdapter.DiffUtilFrame()
     ) {
 
     private var positionSelected = -1

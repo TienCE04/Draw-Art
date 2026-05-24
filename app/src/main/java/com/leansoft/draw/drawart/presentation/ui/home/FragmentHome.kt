@@ -9,7 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FragmentHome : BaseFragment<FragmentHomeBinding, NothingViewModel>() {
     private var adapter: FragmentVPAdapter? = null
 
-    private var adapterTab: FragmentTabCateAdapter? = null
+    private var adapterTab: TabCateAdapter? = null
 
     override fun getClassVM(): Class<NothingViewModel> {
         return NothingViewModel::class.java
@@ -17,7 +17,7 @@ class FragmentHome : BaseFragment<FragmentHomeBinding, NothingViewModel>() {
 
     override fun initView() {
         adapter = FragmentVPAdapter(this)
-        adapterTab = FragmentTabCateAdapter()
+        adapterTab = TabCateAdapter()
         with(binding) {
             vpCate.adapter = adapter
             rcvTab.adapter = adapterTab

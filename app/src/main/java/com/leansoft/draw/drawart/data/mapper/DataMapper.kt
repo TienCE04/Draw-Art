@@ -42,6 +42,6 @@ fun FrameDto.toDomain(): FrameModel {
 
 fun FrameImageEntity.toDomain(): FrameModel {
     return FrameModel(
-        id, imagePath, thumbnailPath
+        id, imagePath
     )
 }

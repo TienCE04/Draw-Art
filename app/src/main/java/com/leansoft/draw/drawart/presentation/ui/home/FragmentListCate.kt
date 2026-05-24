@@ -7,15 +7,16 @@ import com.leansoft.draw.drawart.databinding.FragmentListCateBinding
 import com.leansoft.draw.drawart.presentation.viewmodel.NothingViewModel
 
 class FragmentListCate : BaseFragment<FragmentListCateBinding, NothingViewModel>() {
+
     private var nameCate: String? = null
-    private var adapter: FragmentListCateAdapter? = null
+    private var adapter: ListCateAdapter? = null
     override fun getClassVM(): Class<NothingViewModel> {
         return NothingViewModel::class.java
     }
 
     override fun initView() {
         nameCate = arguments?.getString(NAME_CATE) ?: "Christmas"
-        adapter = FragmentListCateAdapter(requireContext()) { item ->
+        adapter = ListCateAdapter(requireContext()) { item ->
             mainVM.setItemAnimSelected(item)
             navVM.navigate(R.id.action_fragmentMain_to_fragmentPreview)
         }

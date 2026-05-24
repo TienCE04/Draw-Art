@@ -9,8 +9,8 @@ import com.leansoft.draw.drawart.databinding.ItemFramePreviewBinding
 import com.leansoft.draw.drawart.domain.model.FrameModel
 import com.leansoft.draw.drawart.utils.ext.loadImage
 
-class FragmentFramePreviewAdapter :
-    ListAdapter<FrameModel, FragmentFramePreviewAdapter.ViewHolder>(DiffUtilFrame()) {
+class FramePreviewAdapter :
+    ListAdapter<FrameModel, FramePreviewAdapter.ViewHolder>(DiffUtilFrame()) {
     override fun onCreateViewHolder(
         p0: ViewGroup,
         p1: Int
