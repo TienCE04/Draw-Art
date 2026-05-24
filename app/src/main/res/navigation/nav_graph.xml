@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_fragmentMain_to_fragmentDrawFrame"
             app:destination="@id/fragmentDrawFrame" />
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentCreate"
+            app:destination="@id/fragmentCreate" />
     </fragment>
     <fragment
         android:id="@+id/fragmentPreview"
@@ -30,6 +33,25 @@
         android:name="com.leansoft.draw.drawart.presentation.ui.draw.FragmentDrawFrame"
         android:label="Fragment Draw Frame"
         tools:layout="@layout/fragment_draw_frame">
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCreate"
+        android:name="com.leansoft.draw.drawart.presentation.ui.create.FragmentCreate"
+        android:label="Fragment Create"
+        tools:layout="@layout/fragment_create">
+
+        <action
+            android:id="@+id/action_fragmentCreate_to_fragmentRate"
+            app:destination="@id/fragmentRate" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentRate"
+        android:name="com.leansoft.draw.drawart.presentation.ui.create.FragmentRate"
+        android:label="Fragment Rate"
+        tools:layout="@layout/fragment_rate">
+
 
     </fragment>
 </navigation>

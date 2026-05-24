@@ -38,4 +38,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/ivLogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ivLogo" />
+
+    <TextView
+        android:id="@+id/btnApply"
+        style="@style/BodyNormalM1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:padding="10dp"
+        android:text="@string/msg_apply"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:textColor="@color/primary_400"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivLogo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

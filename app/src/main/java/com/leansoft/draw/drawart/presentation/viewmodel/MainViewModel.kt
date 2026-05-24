@@ -25,6 +25,9 @@ class MainViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            launch {
+                repo.getListFrameTemp()
+            }
             val data = repo.getCategoryData()
             data.fold(
                 ::handleFailure,

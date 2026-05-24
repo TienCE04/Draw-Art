@@ -10,7 +10,7 @@
         android:id="@+id/layoutHeader"
         layout="@layout/layout_header_2" />
 
-    <ImageView
+    <com.leansoft.draw.drawart.presentation.ui.custom_view.AnimationView
         android:id="@+id/imgFrame"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -54,13 +54,11 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvFps"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="5"
                 tools:listitem="@layout/item_fps" />
-
         </FrameLayout>
     </LinearLayout>
 </com.leansoft.draw.drawart.widget.SafeAreaView>

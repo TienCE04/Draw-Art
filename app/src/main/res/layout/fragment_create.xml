@@ -209,6 +209,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/btnCreateNow"
         style="@style/AppButton"
         android:layout_width="0dp"
         android:layout_marginHorizontal="20dp"

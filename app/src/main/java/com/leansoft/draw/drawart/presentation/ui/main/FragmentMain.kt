@@ -51,6 +51,7 @@ class FragmentMain : BaseFragment<FragmentMainBinding, NothingViewModel>() {
     private fun register() {
         with(binding) {
             layoutAdd.safeOnClickListener {
+                navVM.navigate(R.id.action_fragmentMain_to_fragmentCreate)
             }
         }
     }

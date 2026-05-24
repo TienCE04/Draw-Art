@@ -22,10 +22,7 @@ class FrameSmallAdapter(private val onItemClick: ((FrameModel) -> Unit)? = null)
             with(binding) {
                 tvNumber.text = position.toString()
 
-                val source =
-                    item.pathFrameSmall.ifEmpty { item.urlFrame }
-
-                ivFramePreview.loadImage(source)
+                ivFramePreview.loadImage(item.urlFrame)
 
                 ivBorder.isSelected = position == positionSelected
                 root.setOnClickListener {

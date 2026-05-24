@@ -36,7 +36,7 @@ fun FrameDto.toDomain(): FrameModel {
     val id = this.id
     val url = this.url
     return FrameModel(
-        id, url, ""
+        id, url
     )
 }
 

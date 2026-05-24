@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.leansoft.draw.drawart.presentation.ui.create.CreateViewModel
 import com.leansoft.draw.drawart.presentation.viewmodel.MainViewModel
 import com.leansoft.draw.drawart.presentation.viewmodel.NavigationViewModel
 
@@ -21,6 +22,8 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
     lateinit var mViewModel: VM
     val mainVM: MainViewModel by activityViewModels()
     val navVM: NavigationViewModel by activityViewModels()
+
+    val createVM: CreateViewModel by activityViewModels()
 
     protected abstract fun getClassVM(): Class<VM>
 
