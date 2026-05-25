@@ -5,9 +5,10 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.leansoft.draw.drawart.databinding.ItemBackgroundBinding
 
-class BackgroundAdapter(): RecyclerView.Adapter<BackgroundAdapter.ViewHolder>() {
+class BackgroundAdapter() : RecyclerView.Adapter<BackgroundAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: ItemBackgroundBinding): RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(private val binding: ItemBackgroundBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
     }
 
