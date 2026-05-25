@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_fragmentCreate_to_fragmentRate"
             app:destination="@id/fragmentRate" />
+        <action
+            android:id="@+id/action_fragmentCreate_to_fragmentBg"
+            app:destination="@id/fragmentBg" />
     </fragment>
 
     <fragment
@@ -52,6 +55,11 @@
         android:label="Fragment Rate"
         tools:layout="@layout/fragment_rate">
 
+    </fragment>
+    <fragment android:id="@+id/fragmentBg"
+        android:name="com.leansoft.draw.drawart.presentation.ui.background.FragmentBackground"
+        android:label="Fragment Background"
+        tools:layout="@layout/fragment_background">
 
     </fragment>
 </navigation>

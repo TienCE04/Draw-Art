@@ -116,7 +116,7 @@ class FragmentRate : BaseFragment<FragmentRateBinding, NothingViewModel>() {
                 val bundle = Bundle().apply {
                     putInt("frame_per_second", fpsSelected)
                 }
-                setFragmentResult("result_key", bundle)
+                setFragmentResult("fps_result", bundle)
                 navVM.back()
             }
         }
