@@ -35,7 +35,7 @@ dependencyResolutionManagement {
             url = uri("https://maven.pkg.github.com/ngoxuanhungbk/ls-leansoft-publishing-sdk")
             credentials {
                 username = "ngoxuanhungbk"
-                password = "REMOVED_TOKEN"
+                password = "REMOVED"
             }
         }
     }
