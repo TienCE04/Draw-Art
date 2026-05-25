@@ -21,6 +21,7 @@
         android:id="@+id/ivBorder"
         android:layout_width="111dp"
         android:layout_height="112dp"
-        android:background="@drawable/bg__border_selected_bg" />
+        android:background="@drawable/bg__border_selected_bg"
+        android:visibility="gone" />
 
 </FrameLayout>

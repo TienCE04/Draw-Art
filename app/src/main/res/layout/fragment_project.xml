@@ -33,7 +33,6 @@
             android:layout_height="32dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@drawable/bg_tab_project_selected"
             android:gravity="center"
             android:text="@string/msg_movie" />
     </LinearLayout>

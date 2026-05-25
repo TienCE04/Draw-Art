@@ -9,7 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FragmentMain : BaseFragment<FragmentMainBinding, NothingViewModel>() {
-    private val adapter by lazy { FragmentTabMainAdapter(this) }
+    private var adapter: FragmentTabMainAdapter? = null
 
     override fun getClassVM(): Class<NothingViewModel> {
         return NothingViewModel::class.java
@@ -24,9 +24,11 @@ class FragmentMain : BaseFragment<FragmentMainBinding, NothingViewModel>() {
     }
 
     private fun initViewPager() {
-        with(binding) {
-            vpHome.adapter = adapter
-            vpHome.isUserInputEnabled = false
+        adapter = FragmentTabMainAdapter(this)
+
+        binding.vpHome.apply {
+            adapter = this@FragmentMain.adapter
+            isUserInputEnabled = false
         }
     }
 
@@ -62,5 +64,10 @@ class FragmentMain : BaseFragment<FragmentMainBinding, NothingViewModel>() {
 
     override fun initViewBinding(): FragmentMainBinding {
         return FragmentMainBinding.inflate(layoutInflater)
+    }
+    override fun onDestroyView() {
+        binding.vpHome.adapter = null
+        adapter = null
+        super.onDestroyView()
     }
 }

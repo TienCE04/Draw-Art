@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.leansoft.draw.drawart.databinding.ItemBackgroundBinding
 import com.leansoft.draw.drawart.utils.ext.loadImage
+import com.leansoft.draw.drawart.utils.ext.visibleOrGone
 
-class BgItemAdapter(private val onClickBg: (Int) -> Unit) : ListAdapter<Int, BgItemAdapter.ViewHolder>(DiffUtilBg()) {
+class BgItemAdapter(private val onClickBg: (Int) -> Unit) :
+    ListAdapter<Int, BgItemAdapter.ViewHolder>(DiffUtilBg()) {
 
     private var positionSelected = -1
     override fun onCreateViewHolder(
@@ -23,14 +25,14 @@ class BgItemAdapter(private val onClickBg: (Int) -> Unit) : ListAdapter<Int, BgI
         p0: ViewHolder,
         p1: Int
     ) {
-        p0.bind(getItem(p1),p1)
+        p0.bind(getItem(p1), p1)
     }
 
     inner class ViewHolder(private val binding: ItemBackgroundBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Int,pos:Int) {
+        fun bind(item: Int, pos: Int) {
             binding.imgBackground.loadImage(item)
-            binding.ivBorder.isSelected = positionSelected == pos
+            binding.ivBorder.visibleOrGone(positionSelected == pos)
             binding.root.setOnClickListener {
                 val oldPos = positionSelected
                 positionSelected = pos

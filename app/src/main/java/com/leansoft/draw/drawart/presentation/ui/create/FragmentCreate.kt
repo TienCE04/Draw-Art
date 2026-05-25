@@ -9,8 +9,10 @@ import com.leansoft.draw.drawart.databinding.FragmentCreateBinding
 import com.leansoft.draw.drawart.presentation.ui.background.BgViewModel
 import com.leansoft.draw.drawart.presentation.viewmodel.NothingViewModel
 import com.leansoft.draw.drawart.utils.ext.safeOnClickListener
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.getValue
 
+@AndroidEntryPoint
 class FragmentCreate : BaseFragment<FragmentCreateBinding, BgViewModel>() {
 
     private var imageUri: Uri? = null
@@ -36,6 +38,10 @@ class FragmentCreate : BaseFragment<FragmentCreateBinding, BgViewModel>() {
             imgBackground.safeOnClickListener {
                 navVM.navigate(R.id.action_fragmentCreate_to_fragmentBg)
             }
+            layoutHeader.ivLogo.safeOnClickListener {
+                navVM.back()
+            }
+            layoutHeader.tvHeader.text=getString(R.string.msg_create_project)
             imgPaint.safeOnClickListener {}
             imgImageEdit.safeOnClickListener {}
             imgCamera.safeOnClickListener {}

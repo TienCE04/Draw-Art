@@ -5,6 +5,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.leansoft.draw.drawart.R
 import com.leansoft.draw.drawart.base.BaseFragment
 import com.leansoft.draw.drawart.databinding.FragmentRateBinding
 import com.leansoft.draw.drawart.presentation.viewmodel.NothingViewModel
@@ -24,6 +25,12 @@ class FragmentRate : BaseFragment<FragmentRateBinding, NothingViewModel>() {
     }
 
     override fun initView() {
+        with(binding){
+            layoutHeader.ivLogo.safeOnClickListener {
+                navVM.back()
+            }
+            layoutHeader.tvHeader.text=getString(R.string.msg_frame_per_second)
+        }
         frameAnimationPlayer.startAnimation(
             binding.imgFrame,
             createVM.listBitmapTemp.value ?: emptyList(),

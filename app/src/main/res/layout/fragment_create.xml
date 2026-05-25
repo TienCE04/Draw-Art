@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:paddingBottom="10dp"
     android:layout_height="match_parent">
 
     <include
@@ -33,10 +34,10 @@
             android:background="@drawable/bg_edt_create_project"
             android:fontFamily="@font/inter_italic"
             android:hint="@string/msg_enter_the_name"
-            android:paddingVertical="16dp"
+            android:paddingVertical="15dp"
             android:paddingStart="16dp"
             android:textColor="@color/neutral_500"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <TextView
             style="@style/BodyNormalM1"

@@ -1,6 +1,7 @@
 package com.leansoft.draw.drawart.presentation.ui.draw
 
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.leansoft.draw.drawart.R
 import com.leansoft.draw.drawart.base.BaseFragment
 import com.leansoft.draw.drawart.databinding.FragmentDrawFrameBinding
@@ -12,6 +13,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FragmentDrawFrame : BaseFragment<FragmentDrawFrameBinding, FragmentDrawFrameVM>() {
+    private val args by navArgs<FragmentDrawFrameArgs>()
     private var adapter: FrameSmallAdapter? = null
 
     private var drawCustom: DrawCustomView? = null
@@ -21,8 +23,12 @@ class FragmentDrawFrame : BaseFragment<FragmentDrawFrameBinding, FragmentDrawFra
     }
 
     override fun initView() {
+        adapter=FrameSmallAdapter{
+
+        }
         with(binding) {
             drawCustom = drawCustomView
+            rcvListFrame.adapter=adapter
         }
         viewLifecycleOwner.lifecycleScope.launch {
             val imgInputBitmap = loadBitmap(R.drawable.img_thumb_temp)

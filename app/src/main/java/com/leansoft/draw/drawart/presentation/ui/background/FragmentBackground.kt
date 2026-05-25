@@ -2,6 +2,7 @@ package com.leansoft.draw.drawart.presentation.ui.background
 
 import android.os.Bundle
 import androidx.fragment.app.setFragmentResult
+import com.leansoft.draw.drawart.R
 import com.leansoft.draw.drawart.base.BaseFragment
 import com.leansoft.draw.drawart.databinding.FragmentBackgroundBinding
 import com.leansoft.draw.drawart.presentation.viewmodel.NothingViewModel
@@ -20,11 +21,18 @@ class FragmentBackground : BaseFragment<FragmentBackgroundBinding, BgViewModel>(
     }
 
     override fun initView() {
+        with(binding){
+            layoutHeader.ivLogo.safeOnClickListener {
+                navVM.back()
+            }
+            layoutHeader.tvHeader.text=getString(R.string.msg_backgrounds)
+        }
         adapter = BackgroundAdapter { item ->
             binding.layoutHeader.btnApply.visible()
             bgSelected = item
         }
 
+        binding.rcvBackground.adapter=adapter
         binding.layoutHeader.btnApply.safeOnClickListener {
             bgSelected?.let {
                 val bundle = Bundle().apply {

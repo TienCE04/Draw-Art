@@ -27,6 +27,9 @@
         android:label="Fragment Preview"
         tools:layout="@layout/fragment_preview">
 
+        <action
+            android:id="@+id/action_fragmentPreview_to_fragmentDrawFrame"
+            app:destination="@id/fragmentDrawFrame" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDrawFrame"
@@ -34,6 +37,9 @@
         android:label="Fragment Draw Frame"
         tools:layout="@layout/fragment_draw_frame">
 
+        <argument
+            android:name="useRecord"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/fragmentCreate"
@@ -47,6 +53,9 @@
         <action
             android:id="@+id/action_fragmentCreate_to_fragmentBg"
             app:destination="@id/fragmentBg" />
+        <action
+            android:id="@+id/action_fragmentCreate_to_fragmentDrawFrame"
+            app:destination="@id/fragmentDrawFrame" />
     </fragment>
 
     <fragment
@@ -56,7 +65,8 @@
         tools:layout="@layout/fragment_rate">
 
     </fragment>
-    <fragment android:id="@+id/fragmentBg"
+    <fragment
+        android:id="@+id/fragmentBg"
         android:name="com.leansoft.draw.drawart.presentation.ui.background.FragmentBackground"
         android:label="Fragment Background"
         tools:layout="@layout/fragment_background">

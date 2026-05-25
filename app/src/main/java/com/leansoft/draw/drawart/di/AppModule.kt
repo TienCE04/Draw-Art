@@ -27,4 +27,7 @@ object AppModule {
     @Provides
     fun provideMyCollectionDao(db: AppDatabase): MyProjectAnimationDao = db.myProjectAnimation()
 
+    @Provides
+    fun provideContext(@ApplicationContext context: Context): Context = context
+
 }

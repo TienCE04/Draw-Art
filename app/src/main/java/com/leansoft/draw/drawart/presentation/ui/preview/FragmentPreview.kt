@@ -1,8 +1,11 @@
 package com.leansoft.draw.drawart.presentation.ui.preview
 
+import androidx.navigation.NavDirections
+import com.leansoft.draw.drawart.R
 import com.leansoft.draw.drawart.base.BaseFragment
 import com.leansoft.draw.drawart.databinding.FragmentPreviewBinding
 import com.leansoft.draw.drawart.presentation.viewmodel.NothingViewModel
+import com.leansoft.draw.drawart.utils.FrameAnimationPlayer
 import com.leansoft.draw.drawart.utils.ext.loadImage
 import com.leansoft.draw.drawart.utils.ext.safeOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,24 +24,34 @@ class FragmentPreview : BaseFragment<FragmentPreviewBinding, NothingViewModel>()
         observe()
     }
 
-    private fun register(){
-        with(binding){
+    private fun register() {
+        with(binding) {
             modeDraw.safeOnClickListener {
-
+                val directions =
+                    FragmentPreviewDirections.actionFragmentPreviewToFragmentDrawFrame(useRecord = false)
+                navVM.navigate(directions)
             }
             modeTemplate.safeOnClickListener {
-
+                val directions =
+                    FragmentPreviewDirections.actionFragmentPreviewToFragmentDrawFrame(useRecord = true)
+                navVM.navigate(directions)
             }
         }
     }
+
     private fun observe() {
         mainVM.itemAnimSelected.observe(viewLifecycleOwner) { data ->
             data?.let {
                 with(binding) {
                     imgPreview.loadImage(it.urlGif)
                     tvNumberFrame.text = it.numberFrame.toString()
-                    imgThumbUse.loadImage(it.thumbnail)
-                    imgThumbDraw.loadImage(it.thumbnail, alpha = 0.4f)
+                    imgThumbUse.loadImage(it.thumbnail, placeholder = R.drawable.img_thumb_temp)
+                    imgThumbDraw.loadImage(
+                        it.thumbnail,
+                        alpha = 0.4f,
+                        placeholder = R.drawable.img_thumb_temp
+                    )
+                    adapter.submitList(data.listFrame)
                 }
             }
         }
