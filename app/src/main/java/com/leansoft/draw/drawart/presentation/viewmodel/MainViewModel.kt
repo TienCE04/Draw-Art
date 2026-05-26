@@ -3,6 +3,7 @@ package com.leansoft.draw.drawart.presentation.viewmodel
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import coil.ImageLoader
@@ -12,7 +13,9 @@ import com.leansoft.draw.drawart.data.source.local.database.dao.MyProjectAnimati
 import com.leansoft.draw.drawart.data.source.local.database.entity.FrameImageEntity
 import com.leansoft.draw.drawart.data.source.local.database.entity.ProjectEntity
 import com.leansoft.draw.drawart.data.source.local.pref.PreferenceHelper
+import com.leansoft.draw.drawart.domain.model.AnimationDetail
 import com.leansoft.draw.drawart.domain.model.AnimationModel
+import com.leansoft.draw.drawart.domain.model.AnimationPack
 import com.leansoft.draw.drawart.domain.model.CategoryGroupModel
 import com.leansoft.draw.drawart.domain.model.FrameModel
 import com.leansoft.draw.drawart.domain.repository.RemoteDataRepository
@@ -41,6 +44,10 @@ class MainViewModel @Inject constructor(
     private val _preBmFrameModels = MutableLiveData<List<FrameModel>>()
     val preBmFrameModels = _preBmFrameModels
 
+    private val _animations = MutableLiveData<List<AnimationPack>>()
+    val animations = _animations
+
+
     private val imageLoader by lazy { ImageLoader(context) }
 
     init {
@@ -48,10 +55,11 @@ class MainViewModel @Inject constructor(
             val data = repo.getCategoryData()
 
             data.fold(
-                ::handleFailure,
-                { _categories.postValue(it) }
-            )
+                ::handleFailure
+            ) { _categories.postValue(it) }
         }
+
+        loadAnimations()
     }
 
     suspend fun createProject(
@@ -164,6 +172,64 @@ class MainViewModel @Inject constructor(
                 loadFromLocal(animName)
             } else {
                 cacheFromNetwork(animName, frames)
+            }
+        }
+    }
+
+    fun loadAnimations() {
+
+        viewModelScope.launch(Dispatchers.IO) {
+
+            val result = mutableListOf<AnimationPack>()
+
+            val levels = context.assets.list("") ?: return@launch
+
+            levels.forEach { level ->
+
+                val categories =
+                    context.assets.list(level) ?: return@forEach
+
+                categories.forEach { category ->
+
+                    val animDetails = mutableListOf<AnimationDetail>()
+
+                    val anims =
+                        context.assets.list("$level/$category")
+                            ?: return@forEach
+
+                    anims.forEach { anim ->
+
+                        val framePaths =
+                            context.assets.list("$level/$category/$anim")
+                                ?.sorted()
+                                ?.map {
+                                    "$level/$category/$anim/$it"
+                                }
+                                ?: emptyList()
+
+                        animDetails.add(
+                            AnimationDetail(
+                                nameAnim = anim,
+                                listFrame = framePaths
+                            )
+                        )
+                    }
+
+                    result.add(
+                        AnimationPack(
+                            level = level,
+                            category = category,
+                            animation = animDetails
+                        )
+                    )
+                }
+            }
+
+            withContext(Dispatchers.Main) {
+
+                Log.d("DEBUG", "loadAnimations: $result")
+
+                _animations.value = result
             }
         }
     }

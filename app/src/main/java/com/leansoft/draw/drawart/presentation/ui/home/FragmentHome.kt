@@ -17,7 +17,9 @@ class FragmentHome : BaseFragment<FragmentHomeBinding, NothingViewModel>() {
 
     override fun initView() {
         adapter = FragmentVPAdapter(this)
-        adapterTab = TabCateAdapter()
+        adapterTab = TabCateAdapter{cate,pos->
+            binding.vpCate.currentItem = pos
+        }
         with(binding) {
             vpCate.adapter = adapter
             rcvTab.adapter = adapterTab
@@ -27,7 +29,7 @@ class FragmentHome : BaseFragment<FragmentHomeBinding, NothingViewModel>() {
     }
 
     private fun observe() {
-        mainVM.categories.observe(viewLifecycleOwner) {
+        mainVM.animations.observe(viewLifecycleOwner) {
             adapterTab?.submitList(it)
             adapter?.submitList(it)
         }
