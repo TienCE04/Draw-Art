@@ -7,6 +7,7 @@ import com.leansoft.draw.drawart.base.BaseFragment
 import com.leansoft.draw.drawart.databinding.FragmentDrawFrameBinding
 import com.leansoft.draw.drawart.presentation.ui.custom_view.DrawCustomView
 import com.leansoft.draw.drawart.utils.GlideUtils.loadBitmap
+import com.leansoft.draw.drawart.utils.ext.gone
 import com.leansoft.draw.drawart.utils.ext.safeOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -41,9 +42,9 @@ class FragmentDrawFrame : BaseFragment<FragmentDrawFrameBinding, FragmentDrawFra
     }
 
     private fun observe() {
-        mainVM.itemAnimSelected.observe(viewLifecycleOwner) { data ->
-            if (data == null) return@observe
-            adapter?.submitList(data.listFrame)
+        mainVM.preBmFrameModels.observe(viewLifecycleOwner) { data ->
+            binding.progressBar.gone()
+            adapter?.submitList(data)
         }
     }
 

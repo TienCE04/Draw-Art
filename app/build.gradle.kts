@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.volley)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -150,4 +151,6 @@ dependencies {
     //draw
     implementation("com.github.skydoves:colorpickerview:2.4.0")
 
+
+    implementation("io.coil-kt:coil:2.6.0")
 }

@@ -8,6 +8,7 @@ import com.leansoft.draw.drawart.data.source.remote.FirebaseMgr
 import com.leansoft.draw.drawart.data.source.remote.config.ConfigUtils
 import com.leansoft.draw.drawart.data.source.remote.dto.CategoriesDto
 import com.leansoft.draw.drawart.data.source.remote.dto.FrameDto
+import com.leansoft.draw.drawart.domain.model.AnimationModel
 import com.leansoft.draw.drawart.domain.model.CategoryGroupModel
 import com.leansoft.draw.drawart.domain.model.FrameModel
 import com.leansoft.draw.drawart.domain.repository.RemoteDataRepository
@@ -24,7 +25,6 @@ class RemoteDataRepositoryImpl @Inject constructor(
     //load from firebase | backend
     private var categories: List<CategoryGroupModel> = emptyList()
 
-    private var frameTemp: List<FrameModel> = emptyList()
     override suspend fun getCategoryData(): Either<Failure, List<CategoryGroupModel>> {
         if (!categories.isEmpty()) {
             return Either.Right(categories)
@@ -43,24 +43,12 @@ class RemoteDataRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getFakeCategoryData(): Either<Failure, List<CategoryGroupModel>> {
-        return Either.Right(categories)
-    }
 
     override suspend fun getListFrameTemp(): Either<Failure, List<FrameModel>> {
-        if (!frameTemp.isEmpty()) {
-            return Either.Right(frameTemp)
+        if (categories.isEmpty()) {
+            return Either.Left(Failure.ServerError(message = "Categories is empty"))
         }
-        return try {
-            val messageJson =
-                firebaseMgr.remoteConfig.getString(ConfigUtils.KEY_CONFIG_FRAME_DATA_TEMP)
-            //convert
-            val type = object : TypeToken<List<FrameDto>>() {}.type
-            val cloudList = Gson().fromJson<List<FrameDto>>(messageJson, type)
-            val listFrame = cloudList.map { it.toDomain() }
-            Either.Right(listFrame)
-        } catch (e: Exception) {
-            Either.Left(Failure.ServerError(message = e.message))
-        }
+        val data = categories[0].data[0].listFrame
+        return Either.Right(data)
     }
 }

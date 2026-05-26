@@ -9,7 +9,5 @@ import com.leansoft.draw.drawart.utils.Failure
 interface RemoteDataRepository {
     suspend fun getCategoryData(): Either<Failure, List<CategoryGroupModel>>
 
-    suspend fun getFakeCategoryData(): Either<Failure, List<CategoryGroupModel>>
-
     suspend fun getListFrameTemp(): Either<Failure, List<FrameModel>>
 }

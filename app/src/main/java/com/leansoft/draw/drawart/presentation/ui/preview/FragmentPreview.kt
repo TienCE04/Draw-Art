@@ -1,19 +1,21 @@
 package com.leansoft.draw.drawart.presentation.ui.preview
 
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import com.leansoft.draw.drawart.R
 import com.leansoft.draw.drawart.base.BaseFragment
 import com.leansoft.draw.drawart.databinding.FragmentPreviewBinding
+import com.leansoft.draw.drawart.presentation.ui.draw.FrameSmallAdapter
 import com.leansoft.draw.drawart.presentation.viewmodel.NothingViewModel
 import com.leansoft.draw.drawart.utils.FrameAnimationPlayer
 import com.leansoft.draw.drawart.utils.ext.loadImage
 import com.leansoft.draw.drawart.utils.ext.safeOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FragmentPreview : BaseFragment<FragmentPreviewBinding, NothingViewModel>() {
-
-    private val adapter by lazy { FramePreviewAdapter() }
+    private val adapter: FrameSmallAdapter? = null
     override fun getClassVM(): Class<NothingViewModel> {
         return NothingViewModel::class.java
     }
@@ -27,6 +29,7 @@ class FragmentPreview : BaseFragment<FragmentPreviewBinding, NothingViewModel>()
     private fun register() {
         with(binding) {
             modeDraw.safeOnClickListener {
+                mainVM.preLoadBm()
                 val directions =
                     FragmentPreviewDirections.actionFragmentPreviewToFragmentDrawFrame(useRecord = false)
                 navVM.navigate(directions)
@@ -51,7 +54,7 @@ class FragmentPreview : BaseFragment<FragmentPreviewBinding, NothingViewModel>()
                         alpha = 0.4f,
                         placeholder = R.drawable.img_thumb_temp
                     )
-                    adapter.submitList(data.listFrame)
+                    adapter?.submitList(data.listFrame)
                 }
             }
         }

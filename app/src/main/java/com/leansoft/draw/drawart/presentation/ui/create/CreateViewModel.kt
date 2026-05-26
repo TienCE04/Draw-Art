@@ -20,10 +20,13 @@ class CreateViewModel @Inject constructor(
     private val repository: RemoteDataRepository
 ) : BaseViewModel() {
 
+    private var _listBitmapTemplate = MutableLiveData<List<Bitmap>>()
+    val listBitmapTemplate: LiveData<List<Bitmap>> = _listBitmapTemplate
+
     private var _listBitmapTemp = MutableLiveData<List<Bitmap>>()
     val listBitmapTemp: LiveData<List<Bitmap>> = _listBitmapTemp
 
-    private var listFrame = emptyList<FrameModel>()
+    private var listFrame: List<FrameModel> = emptyList()
 
     fun getListFrameTemp() {
         viewModelScope.launch {

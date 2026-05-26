@@ -33,7 +33,7 @@ class FragmentRate : BaseFragment<FragmentRateBinding, NothingViewModel>() {
         }
         frameAnimationPlayer.startAnimation(
             binding.imgFrame,
-            createVM.listBitmapTemp.value ?: emptyList(),
+            createVM.listBitmapTemplate.value ?: emptyList(),
             fpsSelected
         )
         setUpRecycleView()
