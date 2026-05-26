@@ -11,32 +11,23 @@
         android:id="@+id/cvBg"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:cardBackgroundColor="#403333FF"
         app:cardCornerRadius="16dp"
         app:layout_constraintDimensionRatio="176:244"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivBgThumb"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:background="@color/neutral_50"
-            android:elevation="4dp"
-            app:layout_constraintBottom_toBottomOf="@+id/cvBg"
-            app:layout_constraintEnd_toEndOf="@+id/cvBg"
-            app:layout_constraintStart_toStartOf="@+id/cvBg"
-            app:layout_constraintTop_toTopOf="@+id/cvBg" />
+
     </com.google.android.material.card.MaterialCardView>
 
     <!--    dung glide bo goc-->
+
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgThumb"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="10dp"
         android:elevation="4dp"
         android:scaleType="centerInside"
         app:layout_constraintDimensionRatio="152:152"
@@ -46,20 +37,24 @@
         tools:src="@drawable/img_thumb_temp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
         android:elevation="4dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/cvBg"
+        app:layout_constraintEnd_toEndOf="@+id/cvBg"
         app:layout_constraintStart_toStartOf="@+id/cvBg">
 
         <TextView
             android:id="@+id/tvName"
             style="@style/BodyNormalM1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
             tools:text="Hello" />
 
         <LinearLayout

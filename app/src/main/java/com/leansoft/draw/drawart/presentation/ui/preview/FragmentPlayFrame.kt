@@ -14,7 +14,9 @@ class FragmentPlayFrame : BaseFragment<FragmentPlayFrameBinding, NothingViewMode
     }
 
     private fun register(){
+        with(binding){
 
+        }
     }
 
     override fun initViewBinding(): FragmentPlayFrameBinding {

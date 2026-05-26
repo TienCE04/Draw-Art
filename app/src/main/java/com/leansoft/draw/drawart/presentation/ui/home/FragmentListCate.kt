@@ -23,6 +23,7 @@ class FragmentListCate : BaseFragment<FragmentListCateBinding, NothingViewModel>
         adapter = ListCateAdapter(
             level = level ?: "",
         ) { item ->
+            mainVM.setItemAnimSelected(item)
             navVM.navigate(R.id.action_fragmentMain_to_fragmentPreview)
         }
         binding.rcvAnim.adapter=adapter
@@ -31,7 +32,7 @@ class FragmentListCate : BaseFragment<FragmentListCateBinding, NothingViewModel>
 
     private fun observe() {
         mainVM.animations.observe(viewLifecycleOwner) { data ->
-            val list = data.filter { it.category == nameCate }[0].animation
+            val list = data.filter { it.category == nameCate  && it.level == level}[0].animation
             Log.d("DEBUG", "observe: $list")
             adapter?.submitList(list)
         }

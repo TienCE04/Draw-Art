@@ -30,7 +30,6 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
     val mainVM: MainViewModel by activityViewModels()
     val navVM: NavigationViewModel by activityViewModels()
 
-    val createVM: CreateViewModel by activityViewModels()
 
     protected abstract fun getClassVM(): Class<VM>
 

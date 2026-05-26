@@ -6,11 +6,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.leansoft.draw.drawart.databinding.ItemFramePreviewBinding
+import com.leansoft.draw.drawart.domain.model.AnimationDetail
 import com.leansoft.draw.drawart.domain.model.FrameModel
+import com.leansoft.draw.drawart.utils.ext.loadAsset
 import com.leansoft.draw.drawart.utils.ext.loadImage
 
-class FramePreviewAdapter :
-    ListAdapter<FrameModel, FramePreviewAdapter.ViewHolder>(DiffUtilFrame()) {
+class FramePreviewAdapter(private val onItemClick: ((String, Int) -> Unit)? = null) :
+    RecyclerView.Adapter<FramePreviewAdapter.ViewHolder>() {
+    private var list: MutableList<String> = mutableListOf()
+    override fun getItemCount() = list.size
+
     override fun onCreateViewHolder(
         p0: ViewGroup,
         p1: Int
@@ -24,32 +29,21 @@ class FramePreviewAdapter :
         pos: Int
     ) {
 
-        holder.bind(getItem(pos))
+        holder.bind(list[pos])
+    }
+
+    fun setList(list: List<String>){
+        this.list.clear()
+        this.list.addAll(list)
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(private val binding: ItemFramePreviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: FrameModel) {
+        fun bind(item: String) {
             with(binding) {
-                ivFramePreview.loadImage(item.urlFrame)
+                ivFramePreview.loadAsset(item)
             }
-
-        }
-    }
-
-    class DiffUtilFrame : DiffUtil.ItemCallback<FrameModel>() {
-        override fun areItemsTheSame(
-            p0: FrameModel,
-            p1: FrameModel
-        ): Boolean {
-            return p0.idFrame == p1.idFrame
-        }
-
-        override fun areContentsTheSame(
-            p0: FrameModel,
-            p1: FrameModel
-        ): Boolean {
-            return p0 == p1
         }
     }
 }

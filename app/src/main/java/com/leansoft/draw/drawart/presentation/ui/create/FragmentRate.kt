@@ -2,6 +2,7 @@ package com.leansoft.draw.drawart.presentation.ui.create
 
 import android.os.Bundle
 import androidx.fragment.app.setFragmentResult
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,9 @@ import com.leansoft.draw.drawart.utils.ext.safeOnClickListener
 import timber.log.Timber
 
 class FragmentRate : BaseFragment<FragmentRateBinding, NothingViewModel>() {
+    private val createVM: CreateViewModel by navGraphViewModels(R.id.create_graph) {
+        defaultViewModelProviderFactory
+    }
 
     private val frameAnimationPlayer = FrameAnimationPlayer()
     var fpsSelected = 12
@@ -25,15 +29,15 @@ class FragmentRate : BaseFragment<FragmentRateBinding, NothingViewModel>() {
     }
 
     override fun initView() {
-        with(binding){
+        with(binding) {
             layoutHeader.ivLogo.safeOnClickListener {
                 navVM.back()
             }
-            layoutHeader.tvHeader.text=getString(R.string.msg_frame_per_second)
+            layoutHeader.tvHeader.text = getString(R.string.msg_frame_per_second)
         }
         frameAnimationPlayer.startAnimation(
             binding.imgFrame,
-            createVM.listBitmapTemplate.value ?: emptyList(),
+            emptyList(),
             fpsSelected
         )
         setUpRecycleView()

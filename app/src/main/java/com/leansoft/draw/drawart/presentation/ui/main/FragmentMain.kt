@@ -1,5 +1,6 @@
 package com.leansoft.draw.drawart.presentation.ui.main
 
+import androidx.navigation.fragment.findNavController
 import com.leansoft.draw.drawart.R
 import com.leansoft.draw.drawart.base.BaseFragment
 import com.leansoft.draw.drawart.databinding.FragmentMainBinding
@@ -53,7 +54,7 @@ class FragmentMain : BaseFragment<FragmentMainBinding, NothingViewModel>() {
     private fun register() {
         with(binding) {
             layoutAdd.safeOnClickListener {
-                navVM.navigate(R.id.action_fragmentMain_to_fragmentCreate)
+                findNavController().navigate(R.id.action_fragmentMain_to_create_graph)
             }
         }
     }

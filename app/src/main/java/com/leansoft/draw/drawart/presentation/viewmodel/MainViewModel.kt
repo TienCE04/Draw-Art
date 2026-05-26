@@ -35,14 +35,8 @@ class MainViewModel @Inject constructor(
     @ApplicationContext private val context: Context
 ) : BaseViewModel() {
 
-    private var _categories = MutableLiveData<List<CategoryGroupModel>>()
-    val categories = _categories
-
-    private var _itemAnimSelected = MutableLiveData<AnimationModel?>()
+    private var _itemAnimSelected = MutableLiveData<AnimationDetail?>()
     val itemAnimSelected = _itemAnimSelected
-
-    private val _preBmFrameModels = MutableLiveData<List<FrameModel>>()
-    val preBmFrameModels = _preBmFrameModels
 
     private val _animations = MutableLiveData<List<AnimationPack>>()
     val animations = _animations
@@ -51,14 +45,6 @@ class MainViewModel @Inject constructor(
     private val imageLoader by lazy { ImageLoader(context) }
 
     init {
-        viewModelScope.launch {
-            val data = repo.getCategoryData()
-
-            data.fold(
-                ::handleFailure
-            ) { _categories.postValue(it) }
-        }
-
         loadAnimations()
     }
 
@@ -87,7 +73,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun setItemAnimSelected(item: AnimationModel) {
+    fun setItemAnimSelected(item: AnimationDetail) {
         _itemAnimSelected.value = item
     }
 
@@ -116,95 +102,36 @@ class MainViewModel @Inject constructor(
         return (result.drawable as BitmapDrawable).bitmap
     }
 
-    private suspend fun loadFromLocal(animName: String) = withContext(Dispatchers.IO) {
-
-        val dir = File(context.filesDir, animName)
-        val files = dir.listFiles()?.sortedBy { it.name } ?: return@withContext
-
-        val frames = files.mapIndexed { index, file ->
-            FrameModel(idFrame = index, urlFrame = file.absolutePath)
-        }
-
-        _preBmFrameModels.postValue(frames)
-
-        if (frames.isNotEmpty()) {
-            createProject(animName, frames[0].urlFrame, frames)
-        }
-    }
-
-    private suspend fun cacheFromNetwork(
-        animName: String,
-        frames: List<FrameModel>
-    ) = withContext(Dispatchers.IO) {
-
-        val dir = File(context.filesDir, animName)
-        if (!dir.exists()) dir.mkdirs()
-
-        val result = mutableListOf<FrameModel>()
-
-        frames.forEachIndexed { index, frame ->
-
-            val bitmap = downloadBitmap(frame.urlFrame)
-
-            val file = File(dir, "$index.png")
-
-            saveBitmapToFile(bitmap, file)
-
-            result.add(
-                FrameModel(idFrame = index, urlFrame = file.absolutePath)
-            )
-        }
-
-        preference.addAnim(animName)
-
-        _preBmFrameModels.postValue(result)
-    }
-
-    fun preLoadBm() {
-        viewModelScope.launch {
-            val anim = itemAnimSelected.value ?: return@launch
-            val animName = anim.nameAnim ?: return@launch
-            val frames = anim.listFrame ?: emptyList()
-
-            val isCached = preference.checkAnimName(animName)
-
-            if (isCached) {
-                loadFromLocal(animName)
-            } else {
-                cacheFromNetwork(animName, frames)
-            }
-        }
-    }
-
     fun loadAnimations() {
 
         viewModelScope.launch(Dispatchers.IO) {
 
             val result = mutableListOf<AnimationPack>()
 
-            val levels = context.assets.list("") ?: return@launch
+            val levels = context.assets.list("")
+                ?.filter { !it.contains(".") }
+                ?: return@launch
 
             levels.forEach { level ->
 
-                val categories =
-                    context.assets.list(level) ?: return@forEach
+                val categories = context.assets.list(level)
+                    ?.filter { !it.contains(".") }
+                    ?: return@forEach
 
                 categories.forEach { category ->
 
                     val animDetails = mutableListOf<AnimationDetail>()
 
-                    val anims =
-                        context.assets.list("$level/$category")
-                            ?: return@forEach
+                    val anims = context.assets.list("$level/$category")
+                        ?.filter { !it.contains(".") }
+                        ?: return@forEach
 
                     anims.forEach { anim ->
 
                         val framePaths =
                             context.assets.list("$level/$category/$anim")
                                 ?.sorted()
-                                ?.map {
-                                    "$level/$category/$anim/$it"
-                                }
+                                ?.map { "$level/$category/$anim/$it" }
                                 ?: emptyList()
 
                         animDetails.add(
@@ -226,9 +153,6 @@ class MainViewModel @Inject constructor(
             }
 
             withContext(Dispatchers.Main) {
-
-                Log.d("DEBUG", "loadAnimations: $result")
-
                 _animations.value = result
             }
         }

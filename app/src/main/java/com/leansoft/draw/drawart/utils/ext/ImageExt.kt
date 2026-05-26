@@ -73,3 +73,24 @@ fun createShimmerPlaceholder(): ShimmerDrawable {
     return shimmerDrawable
 }
 
+fun ImageView.loadAsset(
+    path: String,
+    placeholder: Int? = null,
+    errorRes: Int? = null,
+    alphaValue: Float = 1f
+) {
+    this.alpha = alphaValue
+
+    val request = Glide.with(this)
+        .load("file:///android_asset/$path")
+
+    placeholder?.let {
+        request.placeholder(it)
+    }
+
+    errorRes?.let {
+        request.error(it)
+    }
+
+    request.into(this)
+}

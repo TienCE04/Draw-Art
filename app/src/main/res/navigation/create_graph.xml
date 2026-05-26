@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_graph"
+    app:startDestination="@id/fragmentCreate">
+    <fragment
+        android:id="@+id/fragmentCreate"
+        android:name="com.leansoft.draw.drawart.presentation.ui.create.FragmentCreate"
+        android:label="Fragment Create"
+        tools:layout="@layout/fragment_create">
+
+        <action
+            android:id="@+id/action_fragmentCreate_to_fragmentRate"
+            app:destination="@id/fragmentRate" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentRate"
+        android:name="com.leansoft.draw.drawart.presentation.ui.create.FragmentRate"
+        android:label="Fragment Rate"
+        tools:layout="@layout/fragment_rate" />
+
+</navigation>

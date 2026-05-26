@@ -6,19 +6,18 @@
     android:layout_height="match_parent"
     android:paddingTop="16dp">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvTab"
-        android:layout_width="0dp"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:orientation="horizontal"
-        android:paddingVertical="10dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:tabMode="scrollable"
+        app:tabGravity="start"
+        style="@style/CategoryTabLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_tab_cate" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpCate"
@@ -27,5 +26,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rcvTab" />
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

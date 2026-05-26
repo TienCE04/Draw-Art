@@ -31,7 +31,11 @@ class ListCateAdapter(
     ): ListCateAdapter.AnimViewHolder {
         context = parent.context
         val view =
-            ItemTemplateDrawBinding.inflate(android.view.LayoutInflater.from(parent.context), parent, false)
+            ItemTemplateDrawBinding.inflate(
+                android.view.LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         return AnimViewHolder(view)
     }
 
@@ -45,6 +49,10 @@ class ListCateAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private var data: AnimationDetail? = null
+        private val listener: (Int) -> Unit = { frame ->
+            render(frame)
+        }
+
 
         fun bind(item: AnimationDetail) {
 
@@ -53,9 +61,9 @@ class ListCateAdapter(
             binding.tvName.text = item.nameAnim
             binding.tvLevel.text = level
             binding.tvNumberFrame.text =
-                item.listFrame.size.toString()
+                context.getString(R.string.msg_number_frame, item.listFrame.size)
 
-            AnimationTicker.register(this)
+            AnimationTicker.register(listener)
 
             itemView.setOnClickListener {
                 callback.invoke(item)
@@ -75,11 +83,13 @@ class ListCateAdapter(
 
             binding.imgThumb.setImageBitmap(bitmap)
         }
+
         fun stop() {
-            AnimationTicker.unregister(this)
+            AnimationTicker.unregister(listener)
         }
 
     }
+
     private fun getBitmap(path: String): Bitmap? {
 
         bitmapCache[path]?.let {
@@ -123,6 +133,7 @@ class ListCateAdapter(
 
         holder.stop()
     }
+
     class DiffUtilAnim : DiffUtil.ItemCallback<AnimationDetail>() {
         override fun areItemsTheSame(
             p0: AnimationDetail,

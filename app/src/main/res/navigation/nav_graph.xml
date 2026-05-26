@@ -18,8 +18,10 @@
             android:id="@+id/action_fragmentMain_to_fragmentDrawFrame"
             app:destination="@id/fragmentDrawFrame" />
         <action
-            android:id="@+id/action_fragmentMain_to_fragmentCreate"
-            app:destination="@id/fragmentCreate" />
+            android:id="@+id/action_fragmentMain_to_create_graph"
+            app:destination="@id/create_graph" />
+
+
     </fragment>
     <fragment
         android:id="@+id/fragmentPreview"
@@ -41,30 +43,18 @@
             android:name="useRecord"
             app:argType="boolean" />
     </fragment>
-    <fragment
-        android:id="@+id/fragmentCreate"
-        android:name="com.leansoft.draw.drawart.presentation.ui.create.FragmentCreate"
-        android:label="Fragment Create"
-        tools:layout="@layout/fragment_create">
 
-        <action
-            android:id="@+id/action_fragmentCreate_to_fragmentRate"
-            app:destination="@id/fragmentRate" />
-        <action
-            android:id="@+id/action_fragmentCreate_to_fragmentBg"
-            app:destination="@id/fragmentBg" />
-        <action
-            android:id="@+id/action_fragmentCreate_to_fragmentDrawFrame"
-            app:destination="@id/fragmentDrawFrame" />
-    </fragment>
+    <include app:graph="@navigation/create_graph"
 
-    <fragment
-        android:id="@+id/fragmentRate"
-        android:name="com.leansoft.draw.drawart.presentation.ui.create.FragmentRate"
-        android:label="Fragment Rate"
-        tools:layout="@layout/fragment_rate">
+        />
 
-    </fragment>
+    <action
+        android:id="@+id/action_global_fragmentBg"
+        app:destination="@id/fragmentBg" />
+
+    <action
+        android:id="@+id/action_global_fragmentDrawFrame"
+        app:destination="@id/fragmentDrawFrame" />
     <fragment
         android:id="@+id/fragmentBg"
         android:name="com.leansoft.draw.drawart.presentation.ui.background.FragmentBackground"

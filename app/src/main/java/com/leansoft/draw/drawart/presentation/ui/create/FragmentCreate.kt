@@ -3,6 +3,8 @@ package com.leansoft.draw.drawart.presentation.ui.create
 import android.net.Uri
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.leansoft.draw.drawart.R
 import com.leansoft.draw.drawart.base.BaseFragment
 import com.leansoft.draw.drawart.databinding.FragmentCreateBinding
@@ -14,7 +16,9 @@ import kotlin.getValue
 
 @AndroidEntryPoint
 class FragmentCreate : BaseFragment<FragmentCreateBinding, BgViewModel>() {
-
+    private val createVM: CreateViewModel by navGraphViewModels(R.id.create_graph) {
+        defaultViewModelProviderFactory
+    }
     private var imageUri: Uri? = null
 
     override fun getClassVM(): Class<BgViewModel> {
@@ -22,7 +26,6 @@ class FragmentCreate : BaseFragment<FragmentCreateBinding, BgViewModel>() {
     }
 
     override fun initView() {
-        createVM.getListFrameTemp()
         register()
         observe()
     }
@@ -30,13 +33,13 @@ class FragmentCreate : BaseFragment<FragmentCreateBinding, BgViewModel>() {
     private fun register() {
         with(binding) {
             btnCreateNow.safeOnClickListener {
-                createVM.convertBitmap()
+                navVM.navigate(R.id.action_global_fragmentDrawFrame)
             }
             lnFramePerSecond.safeOnClickListener {
                 navVM.navigate(R.id.action_fragmentCreate_to_fragmentRate)
             }
             imgBackground.safeOnClickListener {
-                navVM.navigate(R.id.action_fragmentCreate_to_fragmentBg)
+               navVM.navigate(R.id.action_global_fragmentBg)
             }
             layoutHeader.ivLogo.safeOnClickListener {
                 navVM.back()

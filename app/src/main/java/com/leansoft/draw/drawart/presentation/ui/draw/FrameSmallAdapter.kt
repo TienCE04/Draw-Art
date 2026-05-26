@@ -1,28 +1,37 @@
 package com.leansoft.draw.drawart.presentation.ui.draw
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.leansoft.draw.drawart.databinding.ItemFrameEdittedBinding
+import com.leansoft.draw.drawart.domain.model.AnimationDetail
 import com.leansoft.draw.drawart.domain.model.FrameModel
 import com.leansoft.draw.drawart.presentation.ui.preview.FramePreviewAdapter
+import com.leansoft.draw.drawart.utils.ext.loadAsset
 import com.leansoft.draw.drawart.utils.ext.loadImage
 
-class FrameSmallAdapter(private val onItemClick: ((FrameModel) -> Unit)? = null) :
-    ListAdapter<FrameModel, FrameSmallAdapter.ViewHolder>(
-        FramePreviewAdapter.DiffUtilFrame()
+class FrameSmallAdapter(private val onItemClick: ((String, Int) -> Unit)? = null) :
+    RecyclerView.Adapter<FrameSmallAdapter.ViewHolder>(
     ) {
+
+        private var list: MutableList<String> = mutableListOf()
+
+    override fun getItemCount(): Int {
+        return list.size
+    }
 
     private var positionSelected = -1
 
     inner class ViewHolder(private val binding: ItemFrameEdittedBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: FrameModel, position: Int) {
+        @SuppressLint("SetTextI18n")
+        fun bind(item: String, position: Int) {
             with(binding) {
-                tvNumber.text = position.toString()
+                tvNumber.text = (position + 1).toString()
 
-                ivFramePreview.loadImage(item.urlFrame)
+                ivFramePreview.loadAsset(item)
 
                 ivBorder.isSelected = position == positionSelected
                 root.setOnClickListener {
@@ -31,10 +40,16 @@ class FrameSmallAdapter(private val onItemClick: ((FrameModel) -> Unit)? = null)
 
                     notifyItemChanged(oldPos)
                     notifyItemChanged(positionSelected)
-                    onItemClick?.invoke(item)
+                    onItemClick?.invoke(item, position)
                 }
             }
         }
+    }
+
+    fun setList(list: List<String>){
+        this.list.clear()
+        this.list.addAll(list)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(
@@ -49,6 +64,6 @@ class FrameSmallAdapter(private val onItemClick: ((FrameModel) -> Unit)? = null)
         holder: ViewHolder,
         position: Int
     ) {
-        holder.bind(getItem(position), position + 1)
+        holder.bind(list[position], position)
     }
 }

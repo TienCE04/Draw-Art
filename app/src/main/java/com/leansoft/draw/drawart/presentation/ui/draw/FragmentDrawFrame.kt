@@ -1,6 +1,7 @@
 package com.leansoft.draw.drawart.presentation.ui.draw
 
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.leansoft.draw.drawart.R
 import com.leansoft.draw.drawart.base.BaseFragment
@@ -24,8 +25,10 @@ class FragmentDrawFrame : BaseFragment<FragmentDrawFrameBinding, FragmentDrawFra
     }
 
     override fun initView() {
-        adapter=FrameSmallAdapter{
-
+        with(binding){
+            layoutHeader.ivLogo.safeOnClickListener {
+                findNavController().popBackStack()
+            }
         }
         with(binding) {
             drawCustom = drawCustomView
@@ -42,10 +45,6 @@ class FragmentDrawFrame : BaseFragment<FragmentDrawFrameBinding, FragmentDrawFra
     }
 
     private fun observe() {
-        mainVM.preBmFrameModels.observe(viewLifecycleOwner) { data ->
-            binding.progressBar.gone()
-            adapter?.submitList(data)
-        }
     }
 
     private fun register() {

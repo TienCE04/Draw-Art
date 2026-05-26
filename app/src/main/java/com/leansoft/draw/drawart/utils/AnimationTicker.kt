@@ -1,17 +1,17 @@
 package com.leansoft.draw.drawart.utils
 
-import android.graphics.Bitmap
 import com.leansoft.draw.drawart.presentation.ui.home.ListCateAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 object AnimationTicker {
 
-    private val holders = mutableSetOf<ListCateAdapter.AnimViewHolder>()
+    private val listeners = mutableSetOf<(Int) -> Unit>()
 
     private var job: Job? = null
 
@@ -21,55 +21,36 @@ object AnimationTicker {
 
     private const val FRAME_DELAY = 1000L / FPS
 
-    fun register(holder: ListCateAdapter.AnimViewHolder) {
+    fun register(listener: (Int) -> Unit) {
+        listeners.add(listener)
 
-        holders.add(holder)
-
-        if (job == null) {
-            start()
-        }
+        if (job == null) start()
     }
 
-    fun unregister(holder: ListCateAdapter.AnimViewHolder) {
+    fun unregister(listener: (Int) -> Unit) {
+        listeners.remove(listener)
 
-        holders.remove(holder)
-
-        if (holders.isEmpty()) {
-            stop()
-        }
+        if (listeners.isEmpty()) stop()
     }
 
     private fun start() {
-
         job = CoroutineScope(Dispatchers.Main).launch {
-
             while (isActive) {
-
-                holders.forEach {
-                    it.render(frame)
-                }
-
+                listeners.forEach { it(frame) }
                 frame++
-
                 delay(FRAME_DELAY)
             }
         }
     }
 
-    private fun stop() {
+    fun clear(){
+        listeners.clear()
+        stop()
+    }
 
+    private fun stop() {
         job?.cancel()
         job = null
-    }
-
-    private val cache =
-        mutableMapOf<String, Bitmap>()
-
-    fun get(path: String): Bitmap? {
-        return cache[path]
-    }
-
-    fun put(path: String, bitmap: Bitmap) {
-        cache[path] = bitmap
+        frame = 0
     }
 }

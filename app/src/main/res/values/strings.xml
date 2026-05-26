@@ -9,7 +9,7 @@
     <string name="msg_home">Home</string>
     <string name="msg_project">Project</string>
     <string name="msg_level">Level:</string>
-    <string name="msg_number_frame">1$%d frames</string>
+    <string name="msg_number_frame">%d frames</string>
     <string name="msg_project_name">Project name</string>
     <string name="msg_enter_the_name">Enter the name of your animation</string>
     <string name="msg_format">Format</string>
@@ -33,4 +33,5 @@
     <string name="msg_colors">Colors</string>
     <string name="msg_apply">Apply</string>
     <string name="msg_create_project">Create Project</string>
+    <string name="msg_preview">Preview</string>
 </resources>

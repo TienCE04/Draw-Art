@@ -15,7 +15,6 @@ class FragmentVPAdapter(
     fun submitList(newList: List<AnimationPack>) {
         list.clear()
         list.addAll(newList)
-        notifyDataSetChanged()
     }
 
     override fun createFragment(p0: Int): FragmentListCate {
