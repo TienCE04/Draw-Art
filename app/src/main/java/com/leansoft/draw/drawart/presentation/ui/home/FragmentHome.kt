@@ -99,30 +99,11 @@ class FragmentHome : BaseFragment<FragmentHomeBinding, NothingViewModel>() {
 
     override fun onResume() {
         super.onResume()
-        lifecycleScope.launch {
-            while (true) {
-                logRam()
-                delay(2000)
-            }
-        }
     }
     override fun onDestroyView() {
+        Log.d("DEBUG", "onDestroyView home: ")
         super.onDestroyView()
         AnimationTicker.clear()
     }
 
-    private fun logRam() {
-        val activityManager =
-            requireContext().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-
-        val memoryInfo = ActivityManager.MemoryInfo()
-        activityManager.getMemoryInfo(memoryInfo)
-
-        val availMem = memoryInfo.availMem / (1024 * 1024)
-        val totalMem = memoryInfo.totalMem / (1024 * 1024)
-        val debugInfo = Debug.MemoryInfo()
-        Debug.getMemoryInfo(debugInfo)
-        val appRam = debugInfo.totalPss / 1024
-        Log.d("RAM", "Available: ${availMem}MB / Total: ${totalMem}MB / App: ${appRam}MB")
-    }
 }

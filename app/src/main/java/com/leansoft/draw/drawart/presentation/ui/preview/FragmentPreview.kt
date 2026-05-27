@@ -14,11 +14,14 @@ import com.leansoft.draw.drawart.utils.ext.loadAsset
 import com.leansoft.draw.drawart.utils.ext.loadImage
 import com.leansoft.draw.drawart.utils.ext.safeOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FragmentPreview : BaseFragment<FragmentPreviewBinding, PreviewVM>() {
-    private val frameAnimationPlayer = FrameAnimationPlayer()
+    private var animJob: Job? = null
     private var adapter: FramePreviewAdapter? = null
     override fun getClassVM(): Class<PreviewVM> {
         return PreviewVM::class.java
@@ -54,7 +57,6 @@ class FragmentPreview : BaseFragment<FragmentPreviewBinding, PreviewVM>() {
         mainVM.itemAnimSelected.observe(viewLifecycleOwner) { data ->
             data?.let {
                 with(binding) {
-                    imgPreview.loadAsset(it.listFrame[0])
                     tvNumberFrame.text = it.listFrame.size.toString()
                     imgThumbUse.loadAsset(it.listFrame[0], placeholder = R.drawable.img_thumb_temp)
                     imgThumbDraw.loadAsset(
@@ -62,15 +64,46 @@ class FragmentPreview : BaseFragment<FragmentPreviewBinding, PreviewVM>() {
                         alphaValue = 0.4f,
                         placeholder = R.drawable.img_thumb_temp
                     )
-
                     Log.d("DEBUG", "observe-list: ${it.listFrame}")
                     adapter?.setList(it.listFrame)
+                    mViewModel.preloadBitmap(it.listFrame)
                 }
+            }
+        }
+        mViewModel.stateLoadBm.observe(viewLifecycleOwner) {
+            if (it) {
+                startAnimation(mainVM.itemAnimSelected.value?.listFrame ?: emptyList())
             }
         }
     }
 
+
+    private fun startAnimation(listFrame: List<String>) {
+        if (listFrame.isEmpty()) return
+        val fps = 12
+        val delayTime = 1000L / fps
+        animJob?.cancel()
+        animJob = viewLifecycleOwner.lifecycleScope.launch {
+            var index = 0
+
+            while (isActive) {
+                val bitmap = mViewModel.getFrame(listFrame[index])
+                bitmap?.let {
+                    binding.imgPreview.setImageBitmap(it)
+                }
+                index = (index + 1) % listFrame.size
+                delay(delayTime)
+            }
+        }
+
+    }
+
     override fun initViewBinding(): FragmentPreviewBinding {
         return FragmentPreviewBinding.inflate(layoutInflater)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        animJob?.cancel()
     }
 }

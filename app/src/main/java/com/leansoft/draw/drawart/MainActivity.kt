@@ -1,7 +1,11 @@
 package com.leansoft.draw.drawart
 
+import android.app.ActivityManager
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.os.Debug
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
@@ -10,6 +14,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.leansoft.draw.drawart.base.BaseActivity
@@ -22,6 +27,8 @@ import com.leansoft.draw.drawart.presentation.viewmodel.NothingViewModel
 import com.leansoft.draw.drawart.utils.ext.EventObserver
 import com.leansoft.draw.drawart.utils.ext.safeNavigate
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.getValue
 
@@ -38,7 +45,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, NothingViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        lifecycleScope.launch {
+            while (true) {
+                logRam()
+                delay(6000)
+            }
+        }
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
@@ -77,7 +89,20 @@ class MainActivity : BaseActivity<ActivityMainBinding, NothingViewModel>() {
     override fun initView() {
         hideNavigationBar()
     }
+    private fun logRam() {
+        val activityManager =
+            this.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
 
+        val memoryInfo = ActivityManager.MemoryInfo()
+        activityManager.getMemoryInfo(memoryInfo)
+
+        val availMem = memoryInfo.availMem / (1024 * 1024)
+        val totalMem = memoryInfo.totalMem / (1024 * 1024)
+        val debugInfo = Debug.MemoryInfo()
+        Debug.getMemoryInfo(debugInfo)
+        val appRam = debugInfo.totalPss / 1024
+        Log.d("RAM", "Available: ${availMem}MB / Total: ${totalMem}MB / App: ${appRam}MB")
+    }
     private fun hideNavigationBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             this.window.insetsController?.hide(WindowInsets.Type.navigationBars())
